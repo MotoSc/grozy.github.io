@@ -35,3 +35,5 @@ fontSize:字体的大小
 text:标签显示的内容
 horizontalAlignmentMode:文字的水平位置
 verticalAlignmentMode:文字的垂直位置
+##自定义字体的使用
+###创建一个自定义字体
