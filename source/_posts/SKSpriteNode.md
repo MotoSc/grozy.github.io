@@ -26,5 +26,4 @@ $ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;
 $ - (void)addChild:(SKNode *)node;
 ```
 将一个node添加到SKScene中。
-photos: 
-- /img/SKSpriteNode_demoe.png
+![精灵效果图](/img/SKSpriteNode_demoe.png)
