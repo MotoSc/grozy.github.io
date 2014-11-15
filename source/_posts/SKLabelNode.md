@@ -20,14 +20,18 @@ SpriteKit中[SKLabelNode](https://developer.apple.com/library/ios/documentation/
 
 ##SKLabelNode的使用
 ###创建一个标签node
-####initWithFontNamed:
+initWithFontNamed:
 用于初始化一个标签对象。
 ``` bash
 $ - (instancetype)initWithFontNamed:(NSString *)fontName
 ```
-fontName
-
-...
-
-<!-- more -->
-...
+``` bash
+$ + (instancetype)labelNodeWithFontNamed:(NSString *)fontName
+```
+fontName:选择标签使用的字体,返回一个标签node对象
+position:标签位置
+fontColor:字体的颜色
+fontSize:字体的大小
+text:标签显示的内容
+horizontalAlignmentMode:文字的水平位置
+verticalAlignmentMode:文字的垂直位置
