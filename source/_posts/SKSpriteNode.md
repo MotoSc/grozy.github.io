@@ -20,6 +20,13 @@ $ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;
 $ - (instancetype)initWithTexture:(SKTexture *)texture;
 $ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;
 ``` 
+### SKSpriteNode常用基本属性
+主要的基本属性还是父类[SKNode](https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/)的那些基本属性，如position、frame和zPosition等。
+可以通过position来控制精灵在SKScene中的位置（主要还受锚点anchorPoint属性的影响）
+``` bash
+$ self.playerShip.position = (CGPoint){CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) * 1; 
+```
+
 ### 将SKSpriteNode添加到SKScene
 要将精灵添加到SKScene中
 ``` bash
