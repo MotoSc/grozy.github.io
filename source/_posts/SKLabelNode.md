@@ -1,5 +1,6 @@
 title: SKLabelNode
 date: 2014-11-15 13:30:36
+comments: true
 tags: [SpriteKit,SKLabelNode]
 ---
 SpriteKit中[SKLabelNode](https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKLabelNode_Ref/index.html)相当于iOS开发中的UILabel标签类。用于在游戏中有需要的位置上显示文本内容给用户。
@@ -27,4 +28,6 @@ $ - (instancetype)initWithFontNamed:(NSString *)fontName
 ```
 fontName
 
-comments: true
+
+
+<!-- more -->
