@@ -9,12 +9,8 @@
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值了。
-iOS中:
-12345+ (SKTexture *)generateTexture{  // Overridden by subclasses  return nil;}
-
-Swift中:
-1234fun">
+    <meta name="description" content="今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值。还没等着编译就给我抛出了个warn。我这时候想起，之前遇到过的这个问题了，关于之前区分?和!的区别。
+12var num :Int = nil //抛出的错误和我今天遇到的一样。var num :Int? =">
     
     
     
@@ -86,7 +82,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </p>
   <p class="article-time">
     <time datetime="2014-11-15T12:32:35.000Z" itemprop="datePublished">11月 15 2014</time>
-    更新日期:<time datetime="2014-11-15T12:45:19.000Z" itemprop="dateModified">11月 15 2014</time>
+    更新日期:<time datetime="2014-11-15T13:26:42.000Z" itemprop="dateModified">11月 15 2014</time>
     
   </p>
 </header>
@@ -98,14 +94,16 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS中:"><span class="toc-number">1.</span> <span class="toc-text">iOS中:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift中:"><span class="toc-number">2.</span> <span class="toc-text">Swift中:</span></a></li></ol>
 		</div>
 		
-		<p>今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值了。</p>
+		<p>今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值。<br><img src="/img/摘记-如何使Swift方法返回值为空/warn.png" alt="警告"><br>还没等着编译就给我抛出了个warn。我这时候想起，之前遇到过的这个问题了，关于之前区分?和!的区别。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var num :Int = nil //抛出的错误和我今天遇到的一样。</div><div class="line">var num :Int? = nil //当加上？之后问题就解决了。</div></pre></td></tr></table></figure>
+
+<p>撇个<a href="http://blog.csdn.net/zhangao0086/article/details/38640209" target="_blank" rel="external">Optional</a>有关的传送门。大概就是这么个意思，声明一个对象的时候，Swift不会像obj-C和其他语言一样为你默认的设置一个为nil的初始值。在Swift中，没有初始值的变量是不可以使用的，所以出现了Optional类型。在下面的类方法的返回值后面，加一个问号就可以让返回类型支持NilLiteralConvertible这个协议。</p>
 <h2 id="iOS中:">iOS中:</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ (SKTexture *)generateTexture</div><div class="line">{</div><div class="line">  // Overridden by subclasses</div><div class="line">  <span class="keyword">return</span> nil;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <h2 id="Swift中:">Swift中:</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">func generateTexture() -&gt; SKTexture</div><div class="line">{</div><div class="line">        <span class="keyword">return</span> nil</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func generateTexture() -&gt; SKTexture</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> nil</div><div class="line">}</div><div class="line">//解决办法</div><div class="line">func generateTexture() -&gt; SKTexture?</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> nil</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<p><img src="/img/摘记-如何使Swift方法返回值为空/warn.png" alt="警告"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
