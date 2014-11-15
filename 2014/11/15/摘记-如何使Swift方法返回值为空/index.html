@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>第一篇文章 | 学而时习</title>
+    <title>摘记-如何使Swift方法返回值为空 | 学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="发布的第一篇博客，测试用。">
+    <meta name="description" content="今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值了。
+iOS中:
+12345+ (SKTexture *)generateTexture{  // Overridden by subclasses  return nil;}
+
+Swift中:
+1234fun">
     
     
     
@@ -73,15 +78,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/15/第一篇文章/" title="第一篇文章" itemprop="url">第一篇文章</a>
+      <a href="/2014/11/15/摘记-如何使Swift方法返回值为空/" title="摘记-如何使Swift方法返回值为空" itemprop="url">摘记-如何使Swift方法返回值为空</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-14T16:59:25.000Z" itemprop="datePublished">11月 15 2014</time>
-    更新日期:<time datetime="2014-11-15T08:21:08.000Z" itemprop="dateModified">11月 15 2014</time>
+    <time datetime="2014-11-15T12:32:35.000Z" itemprop="datePublished">11月 15 2014</time>
+    更新日期:<time datetime="2014-11-15T12:45:19.000Z" itemprop="dateModified">11月 15 2014</time>
     
   </p>
 </header>
@@ -90,17 +95,24 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS中:"><span class="toc-number">1.</span> <span class="toc-text">iOS中:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift中:"><span class="toc-number">2.</span> <span class="toc-text">Swift中:</span></a></li></ol>
 		</div>
 		
-		<p>发布的第一篇博客，测试用。</p>
+		<p>今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值了。</p>
+<h2 id="iOS中:">iOS中:</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ (SKTexture *)generateTexture</div><div class="line">{</div><div class="line">  // Overridden by subclasses</div><div class="line">  <span class="keyword">return</span> nil;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="Swift中:">Swift中:</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">func generateTexture() -&gt; SKTexture</div><div class="line">{</div><div class="line">        <span class="keyword">return</span> nil</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><img src="/img/摘记-如何使Swift方法返回值为空/warn.png" alt="警告"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/小记/">小记</a><a href="/tags/随笔/">随笔</a>
+  <span></span> <a href="/tags/摘记/">摘记</a><a href="/tags/Swift/">Swift</a>
   </div>
 
 
@@ -108,7 +120,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/15/第一篇文章/" data-title="第一篇文章 | 学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/15/摘记-如何使Swift方法返回值为空/" data-title="摘记-如何使Swift方法返回值为空 | 学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -117,19 +129,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/15/SKSpriteNode/" title="SKSpriteNode">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  SKSpriteNode</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/11/15/hello-world/"  title="Hello World">
+<a href="/2014/11/15/SKLabelNode/"  title="SKLabelNode">
  <strong>NEXT:</strong><br/> 
- <span>Hello World
+ <span>SKLabelNode
 </span>
 </a>
 </div>
@@ -142,7 +146,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS中:"><span class="toc-number">1.</span> <span class="toc-text">iOS中:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift中:"><span class="toc-number">2.</span> <span class="toc-text">Swift中:</span></a></li></ol>
   </div>
 
 <div id="asidepart">
