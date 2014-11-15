@@ -12,7 +12,17 @@
     <meta name="description" content="SpriteKit中SKLabelNode相当于iOS开发中的UILabel标签类。用于在游戏中有需要的位置上显示文本内容给用户。
 SKLabelNode快速入门
 SKLabelNode的简单介绍
-通常，要使用一个标签node，通过调用labelNodeWithFontNamed:类方法创建一个标签">
+通常，要使用一个标签node，通过调用labelNodeWithFontNamed:类方法创建一个标签node。然后配置标签node的其他属性，尤其是text属性。标签node的size明确取决于标签node的fontName，fontSie和text属性，下面看看如何去创建一个文本标签:
+1234567SKLabelNode *winner = [SKLabelNode labelNodeWithFontNamed:@&quot;Chalkduster&quot;];winner.text = @&quot;You Win!&quot;;winner.fontSize = 65;winner.fontColor = [SKColor greenColor];winner.position = CGPointMake(CGRectGetMidX(self.bounds),                             CGRectGetMidY(self.bounds));[self addChild:winner];
+
+不论你如何改变node的属性，标签node会为下次scene的渲染自动的更新。
+SKLabelNode的使用
+创建一个标签node
+initWithFontNamed:
+用于初始化一个标签对象。
+1$ - (instancetype)initWithFontNamed:(NSString *)fontName
+
+fontName">
     
     
     
@@ -77,7 +87,7 @@ SKLabelNode的简单介绍
     </p>
   <p class="article-time">
     <time datetime="2014-11-15T05:30:36.000Z" itemprop="datePublished">Nov 15 2014</time>
-    Updated:<time datetime="2014-11-15T06:01:44.000Z" itemprop="dateModified">Nov 15 2014</time>
+    Updated:<time datetime="2014-11-15T06:05:14.000Z" itemprop="dateModified">Nov 15 2014</time>
     
   </p>
 </header>
@@ -103,8 +113,7 @@ SKLabelNode的简单介绍
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ - (instancetype)initWithFontNamed:(NSString *)fontName</div></pre></td></tr></table></figure>
 
 <p>fontName</p>
-<p>comments: true</p>
-  
+<a id="more"></a>  
 	</div>
 		<footer class="article-footer clearfix">
 
