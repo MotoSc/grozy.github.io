@@ -4,11 +4,11 @@
 
 # Site
 title: 学而时习
-subtitle:
+subtitle: iOS程序猿，就职北京
 description: 就职于北京的iOS开发者
 author: 孙国志
 email: grozysun@gmail.com
-language:
+language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
