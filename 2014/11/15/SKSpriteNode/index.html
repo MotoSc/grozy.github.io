@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | 学而时习</title>
+    <title>SKSpriteNode | 学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="SKSpriteNode和Cocos2d中的精灵相似。可以用图片或者SKTexture对象来初始化SKSpriteNode对象。而SKTexture可以通过创建SKView,使用下面的方法返回一个SKTexture对象，参数为SKNode也就是说可以以任何一个SKNode对象创建一个SKTextur">
     
     
     
@@ -66,15 +66,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/15/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2014/11/15/SKSpriteNode/" title="SKSpriteNode" itemprop="url">SKSpriteNode</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-14T16:10:24.000Z" itemprop="datePublished">Nov 15 2014</time>
-    Updated:<time datetime="2014-11-14T16:10:24.000Z" itemprop="dateModified">Nov 15 2014</time>
+    <time datetime="2014-11-15T01:47:02.000Z" itemprop="datePublished">Nov 15 2014</time>
+    Updated:<time datetime="2014-11-15T02:17:06.000Z" itemprop="dateModified">Nov 15 2014</time>
     
   </p>
 </header>
@@ -83,37 +83,34 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+		<p><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKSpriteNode_Ref/" target="_blank" rel="external">SKSpriteNode</a>和Cocos2d中的精灵相似。可以用图片或者<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKTexture_Ref/" target="_blank" rel="external">SKTexture</a>对象来初始化SKSpriteNode对象。而SKTexture可以通过创建<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKView/" target="_blank" rel="external">SKView</a>,使用下面的方法返回一个SKTexture对象，参数为<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>也就是说可以以任何一个SKNode对象创建一个SKTexture贴图对象，如<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKLabelNode_Ref/" target="_blank" rel="external">SKLabelNode</a>详细的以后再说。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ - (SKTexture *)textureFromNode:(SKNode *)node;</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p> bash</p>
+<h2 id="快速入门">快速入门</h2>
+<h3 id="创建一个SKSpriteNode">创建一个SKSpriteNode</h3>
+<p>1、创建一个有颜色的矩形区域为精灵<br>2、通过贴图创建精灵<br>3、通过图片创建精灵</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;</div><div class="line">$ - (instancetype)initWithTexture:(SKTexture *)texture;</div><div class="line">$ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;</div></pre></td></tr></table></figure>
 
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p> bash</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SpriteKit/">SpriteKit</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/15/hello-world/" data-title="Hello World | 学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/15/SKSpriteNode/" data-title="SKSpriteNode | 学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -122,14 +119,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/15/第一篇文章/" title="第一篇文章">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  第一篇文章</span>
+
+<div class="next">
+<a href="/2014/11/15/第一篇文章/"  title="第一篇文章">
+ <strong>NEXT:</strong><br/> 
+ <span>第一篇文章
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -139,7 +136,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
