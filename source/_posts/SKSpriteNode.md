@@ -6,7 +6,7 @@ tags: SpriteKit
 
 ``` bash
 $ - (SKTexture *)textureFromNode:(SKNode *)node;
-``` bash
+``` 
 
 ## 快速入门
 
@@ -19,4 +19,5 @@ $ - (SKTexture *)textureFromNode:(SKNode *)node;
 $ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;
 $ - (instancetype)initWithTexture:(SKTexture *)texture;
 $ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;
-``` bash
+``` 
+例子
