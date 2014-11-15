@@ -20,4 +20,11 @@ $ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;
 $ - (instancetype)initWithTexture:(SKTexture *)texture;
 $ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;
 ``` 
-例子
+### 将SKSpriteNode添加到SKScene
+要将精灵添加到SKScene中
+``` bash
+$ - (void)addChild:(SKNode *)node;
+```
+将一个node添加到SKScene中。
+photos: 
+- /img/SKSpriteNode_demoe.png
