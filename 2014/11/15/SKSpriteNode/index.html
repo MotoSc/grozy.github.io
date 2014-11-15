@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-15T01:47:02.000Z" itemprop="datePublished">Nov 15 2014</time>
-    Updated:<time datetime="2014-11-15T02:17:06.000Z" itemprop="dateModified">Nov 15 2014</time>
+    Updated:<time datetime="2014-11-15T02:25:06.000Z" itemprop="dateModified">Nov 15 2014</time>
     
   </p>
 </header>
@@ -89,13 +89,15 @@
 		<p><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKSpriteNode_Ref/" target="_blank" rel="external">SKSpriteNode</a>和Cocos2d中的精灵相似。可以用图片或者<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKTexture_Ref/" target="_blank" rel="external">SKTexture</a>对象来初始化SKSpriteNode对象。而SKTexture可以通过创建<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKView/" target="_blank" rel="external">SKView</a>,使用下面的方法返回一个SKTexture对象，参数为<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>也就是说可以以任何一个SKNode对象创建一个SKTexture贴图对象，如<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKLabelNode_Ref/" target="_blank" rel="external">SKLabelNode</a>详细的以后再说。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ - (SKTexture *)textureFromNode:(SKNode *)node;</div></pre></td></tr></table></figure>
 
-<p> bash</p>
+
+
 <h2 id="快速入门">快速入门</h2>
 <h3 id="创建一个SKSpriteNode">创建一个SKSpriteNode</h3>
 <p>1、创建一个有颜色的矩形区域为精灵<br>2、通过贴图创建精灵<br>3、通过图片创建精灵</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;</div><div class="line">$ - (instancetype)initWithTexture:(SKTexture *)texture;</div><div class="line">$ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;</div></pre></td></tr></table></figure>
 
-<p> bash</p>
+
+<p>例子</p>
   
 	</div>
 		<footer class="article-footer clearfix">
