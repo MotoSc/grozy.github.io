@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-15T01:47:02.000Z" itemprop="datePublished">Nov 15 2014</time>
-    Updated:<time datetime="2014-11-15T02:44:57.000Z" itemprop="dateModified">Nov 15 2014</time>
+    Updated:<time datetime="2014-11-15T02:59:04.000Z" itemprop="dateModified">Nov 15 2014</time>
     
   </p>
 </header>
@@ -83,7 +83,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.2.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SKSpriteNode常用基本属性"><span class="toc-number">1.2.</span> <span class="toc-text">SKSpriteNode常用基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.3.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
 		</div>
 		
 		<p><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKSpriteNode_Ref/" target="_blank" rel="external">SKSpriteNode</a>和Cocos2d中的精灵相似。可以用图片或者<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKTexture_Ref/" target="_blank" rel="external">SKTexture</a>对象来初始化SKSpriteNode对象。而SKTexture可以通过创建<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKView/" target="_blank" rel="external">SKView</a>,使用下面的方法返回一个SKTexture对象，参数为<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>也就是说可以以任何一个SKNode对象创建一个SKTexture贴图对象，如<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKLabelNode_Ref/" target="_blank" rel="external">SKLabelNode</a>详细的以后再说。</p>
@@ -96,6 +96,10 @@
 <p>1、创建一个有颜色的矩形区域为精灵<br>2、通过贴图创建精灵<br>3、通过图片创建精灵</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;</div><div class="line">$ - (instancetype)initWithTexture:(SKTexture *)texture;</div><div class="line">$ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;</div></pre></td></tr></table></figure>
 
+
+<h3 id="SKSpriteNode常用基本属性">SKSpriteNode常用基本属性</h3>
+<p>主要的基本属性还是父类<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>的那些基本属性，如position、frame和zPosition等。<br>可以通过position来控制精灵在SKScene中的位置（主要还受锚点anchorPoint属性的影响）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ self.playerShip.position = (CGPoint){CGRectGetWidth(self.frame) / <span class="number">2</span>, CGRectGetHeight(self.frame) * <span class="number">1</span>;</div></pre></td></tr></table></figure>
 
 <h3 id="将SKSpriteNode添加到SKScene">将SKSpriteNode添加到SKScene</h3>
 <p>要将精灵添加到SKScene中</p>
@@ -142,7 +146,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.2.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SKSpriteNode常用基本属性"><span class="toc-number">1.2.</span> <span class="toc-text">SKSpriteNode常用基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.3.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
