@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SKSpriteNode | 学而时习</title>
+    <title>UIImagePickerController在dismss后状态栏消失 | 学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="SKSpriteNode和Cocos2d中的精灵相似。可以用图片或者SKTexture对象来初始化SKSpriteNode对象。而SKTexture可以通过创建SKView,使用下面的方法返回一个SKTexture对象，参数为SKNode也就是说可以以任何一个SKNode对象创建一个SKTextur">
+    <meta name="description" content="在做iOS上传头像的时候，自定义了图像的裁剪的ViewController。按照需求，要求和系统的一样，从相机或者相册直接push到编辑图像的界面。但是当我直接push图像裁剪的ViewController中之后在进行dismiss，结果状态栏消失不见了。在网上找到了一个能显示状态栏的方法,先隐藏状">
     
     
     
@@ -73,15 +73,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/15/SKSpriteNode/" title="SKSpriteNode" itemprop="url">SKSpriteNode</a>
+      <a href="/2014/11/20/UIImagePickerController在dismss后状态栏消失/" title="UIImagePickerController在dismss后状态栏消失" itemprop="url">UIImagePickerController在dismss后状态栏消失</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-15T01:47:02.000Z" itemprop="datePublished">11月 15 2014</time>
-    更新日期:<time datetime="2014-11-15T02:59:04.000Z" itemprop="dateModified">11月 15 2014</time>
+    <time datetime="2014-11-20T05:50:41.000Z" itemprop="datePublished">11月 20 2014</time>
+    更新日期:<time datetime="2014-11-20T05:55:41.000Z" itemprop="dateModified">11月 20 2014</time>
     
   </p>
 </header>
@@ -90,36 +90,19 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SKSpriteNode常用基本属性"><span class="toc-number">1.2.</span> <span class="toc-text">SKSpriteNode常用基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.3.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<p><a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKSpriteNode_Ref/" target="_blank" rel="external">SKSpriteNode</a>和Cocos2d中的精灵相似。可以用图片或者<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKTexture_Ref/" target="_blank" rel="external">SKTexture</a>对象来初始化SKSpriteNode对象。而SKTexture可以通过创建<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKView/" target="_blank" rel="external">SKView</a>,使用下面的方法返回一个SKTexture对象，参数为<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>也就是说可以以任何一个SKNode对象创建一个SKTexture贴图对象，如<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKLabelNode_Ref/" target="_blank" rel="external">SKLabelNode</a>详细的以后再说。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ - (SKTexture *)textureFromNode:(SKNode *)node;</div></pre></td></tr></table></figure>
+		<p>在做iOS上传头像的时候，自定义了图像的裁剪的ViewController。按照需求，要求和系统的一样，从相机或者相册直接push到编辑图像的界面。但是当我直接push图像裁剪的ViewController中之后在进行dismiss，结果状态栏消失不见了。在网上找到了一个能显示状态栏的方法,先隐藏状态栏之后在显示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//处理调用UIImagePickerViewController push到自定义裁剪的ViewController中后，statusBar消失</div><div class="line">- (void)showStatusBar</div><div class="line">{</div><div class="line">    [UIView animateWithDuration:<span class="number">0.4</span> animations:^{</div><div class="line"></div><div class="line">        [[UIApplication sharedApplication] <span class="keyword">set</span>StatusBarHidden:YES];</div><div class="line">    </div><div class="line">    } completion:^(BOOL finished) {</div><div class="line"></div><div class="line">        [[UIApplication sharedApplication] <span class="keyword">set</span>StatusBarHidden:NO];</div><div class="line"></div><div class="line">    }];</div><div class="line">}</div></pre></td></tr></table></figure>
 
-
-
-<h2 id="快速入门">快速入门</h2>
-<h3 id="创建一个SKSpriteNode">创建一个SKSpriteNode</h3>
-<p>1、创建一个有颜色的矩形区域为精灵<br>2、通过贴图创建精灵<br>3、通过图片创建精灵</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ + (instancetype)spriteNodeWithColor:(SKColor *)color size:(CGSize)size;</div><div class="line">$ - (instancetype)initWithTexture:(SKTexture *)texture;</div><div class="line">$ + (instancetype)spriteNodeWithImageNamed:(NSString *)name;</div></pre></td></tr></table></figure>
-
-
-<h3 id="SKSpriteNode常用基本属性">SKSpriteNode常用基本属性</h3>
-<p>主要的基本属性还是父类<a href="https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/" target="_blank" rel="external">SKNode</a>的那些基本属性，如position、frame和zPosition等。<br>可以通过position来控制精灵在SKScene中的位置（主要还受锚点anchorPoint属性的影响）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ self.playerShip.position = (CGPoint){CGRectGetWidth(self.frame) / <span class="number">2</span>, CGRectGetHeight(self.frame) * <span class="number">1</span>;</div></pre></td></tr></table></figure>
-
-<h3 id="将SKSpriteNode添加到SKScene">将SKSpriteNode添加到SKScene</h3>
-<p>要将精灵添加到SKScene中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ - (void)addChild:(SKNode *)node;</div></pre></td></tr></table></figure>
-
-<p>将一个node添加到SKScene中。<br><img src="/img/SKSpriteNode_demoe.png" alt="精灵效果图"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SpriteKit/">SpriteKit</a>
+  <span></span> <a href="/tags/iOS/">iOS</a><a href="/tags/UIImagePickerController/">UIImagePickerController</a>
   </div>
 
 
@@ -127,7 +110,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/15/SKSpriteNode/" data-title="SKSpriteNode | 学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/20/UIImagePickerController在dismss后状态栏消失/" data-title="UIImagePickerController在dismss后状态栏消失 | 学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -136,19 +119,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/15/SKLabelNode/" title="SKLabelNode">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  SKLabelNode</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/11/15/第一篇文章/"  title="第一篇文章">
+<a href="/2014/11/19/iOS动画-1/"  title="iOS动画-1">
  <strong>NEXT:</strong><br/> 
- <span>第一篇文章
+ <span>iOS动画-1
 </span>
 </a>
 </div>
@@ -161,7 +136,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速入门"><span class="toc-number">1.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个SKSpriteNode"><span class="toc-number">1.1.</span> <span class="toc-text">创建一个SKSpriteNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SKSpriteNode常用基本属性"><span class="toc-number">1.2.</span> <span class="toc-text">SKSpriteNode常用基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将SKSpriteNode添加到SKScene"><span class="toc-number">1.3.</span> <span class="toc-text">将SKSpriteNode添加到SKScene</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">
