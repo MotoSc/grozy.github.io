@@ -9,6 +9,16 @@
     
     <meta name="author" content="孙国志">
     
+    <meta name="description" content="简诉
+iOS动画，
+动画属性
+Position:
+对象在屏幕中明确的X轴和Y轴坐标
+Opacity:
+对象在屏幕中的透明度0.0(不可见)~0.1
+Scale:
+缩放的大小依赖于初始化的大小。缩放1.0意味着将对象设置为初始化的高度和宽度。缩放0.5指的是将对象的宽度和高度都设置为初始化高度和宽度的">
+    
     
     
     
@@ -79,7 +89,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </p>
   <p class="article-time">
     <time datetime="2014-11-19T07:55:06.000Z" itemprop="datePublished">11月 19 2014</time>
-    更新日期:<time datetime="2014-11-19T07:55:06.000Z" itemprop="dateModified">11月 19 2014</time>
+    更新日期:<time datetime="2014-11-20T10:32:26.000Z" itemprop="dateModified">11月 20 2014</time>
     
   </p>
 </header>
@@ -88,12 +98,40 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简诉"><span class="toc-number">1.</span> <span class="toc-text">简诉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动画属性"><span class="toc-number">2.</span> <span class="toc-text">动画属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Position:"><span class="toc-number">2.1.</span> <span class="toc-text">Position:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Opacity:"><span class="toc-number">2.2.</span> <span class="toc-text">Opacity:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scale:"><span class="toc-number">2.3.</span> <span class="toc-text">Scale:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color:"><span class="toc-number">2.4.</span> <span class="toc-text">Color:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rotation:"><span class="toc-number">2.5.</span> <span class="toc-text">Rotation:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D:"><span class="toc-number">2.6.</span> <span class="toc-text">3D:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计动画"><span class="toc-number">3.</span> <span class="toc-text">设计动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#它要初始化的属性是什么？"><span class="toc-number">3.1.</span> <span class="toc-text">它要初始化的属性是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#它属性的终态是什么？"><span class="toc-number">3.2.</span> <span class="toc-text">它属性的终态是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这个动画需要执行多久"><span class="toc-number">3.3.</span> <span class="toc-text">这个动画需要执行多久</span></a></li></ol></li></ol>
 		</div>
 		
-		  
+		<h2 id="简诉">简诉</h2>
+<p>iOS动画，</p>
+<h2 id="动画属性">动画属性</h2>
+<h3 id="Position:">Position:</h3>
+<p>对象在屏幕中明确的X轴和Y轴坐标</p>
+<h3 id="Opacity:">Opacity:</h3>
+<p>对象在屏幕中的透明度0.0(不可见)~0.1</p>
+<h3 id="Scale:">Scale:</h3>
+<p>缩放的大小依赖于初始化的大小。缩放1.0意味着将对象设置为初始化的高度和宽度。缩放0.5指的是将对象的宽度和高度都设置为初始化高度和宽度的一半。当缩放为0的时候，虽然高度和宽度都为0导致对象不可见，但是依然存在于屏幕的坐标系之中。2.0为初始化宽高的2倍。</p>
+<h3 id="Color:">Color:</h3>
+<p>就和CSS动画一样，你可以将一个颜色过渡到另一个颜色。这个过度可以是文字的颜色，或者是一个形状或画板的背景色。你可以通过一次轻触，将一个颜色过渡到另一个颜色，或者展示一个新的界面给用户。</p>
+<h3 id="Rotation:">Rotation:</h3>
+<p>对象的旋转范围为0°到360°，一个轻微旋转动画可以给一个平凡乏味的运动添加一些灵巧的元素。</p>
+<h3 id="3D:">3D:</h3>
+<p>3D变换你界面中的对象，在三维中通过使用3D过度动画，使用3D旋转进入屏幕或者旋转向用户。<a href="http://realmacsoftware.com/clear" target="_blank" rel="external">例子:Clear</a></p>
+<h2 id="设计动画">设计动画</h2>
+<p>如果动画是一栋房子，你可以使用工具建造房子:锤子、锯子和钉子。动画可以使用上面说过的属性，通过特定的操作去创建一个动画。所需要做的就是考虑动画和设计移动。规划动画如何发生的、动画队列的不走。在最初处于一种模糊的层次，并把动画每部分的细节写下来。然后再去规划这个动画。<br>对于每一个动画元素，要先想然后再去写代码。<br>那么问题来了？</p>
+<h3 id="它要初始化的属性是什么？">它要初始化的属性是什么？</h3>
+<p>你是想让它从屏幕底部离开？还是渐渐消失？或者让他变的很小？还是超大？</p>
+<h3 id="它属性的终态是什么？">它属性的终态是什么？</h3>
+<p>它是在屏幕中心？还是现在对于用户不可见？或是旋转了45°？再或者现在换了一个不同的背景色？</p>
+<h3 id="这个动画需要执行多久">这个动画需要执行多久</h3>
+<p>在实现这个动画之前，知道确切的动画时间是很困难的，所以我认为</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/动画/">动画</a><a href="/tags/iOS/">iOS</a>
+  </div>
 
 
 
@@ -134,7 +172,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简诉"><span class="toc-number">1.</span> <span class="toc-text">简诉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动画属性"><span class="toc-number">2.</span> <span class="toc-text">动画属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Position:"><span class="toc-number">2.1.</span> <span class="toc-text">Position:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Opacity:"><span class="toc-number">2.2.</span> <span class="toc-text">Opacity:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scale:"><span class="toc-number">2.3.</span> <span class="toc-text">Scale:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color:"><span class="toc-number">2.4.</span> <span class="toc-text">Color:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rotation:"><span class="toc-number">2.5.</span> <span class="toc-text">Rotation:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D:"><span class="toc-number">2.6.</span> <span class="toc-text">3D:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计动画"><span class="toc-number">3.</span> <span class="toc-text">设计动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#它要初始化的属性是什么？"><span class="toc-number">3.1.</span> <span class="toc-text">它要初始化的属性是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#它属性的终态是什么？"><span class="toc-number">3.2.</span> <span class="toc-text">它属性的终态是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这个动画需要执行多久"><span class="toc-number">3.3.</span> <span class="toc-text">这个动画需要执行多久</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -156,7 +194,9 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 			<li><a href="/tags/UIImagePickerController/" title="UIImagePickerController">UIImagePickerController<sup>1</sup></a></li>
 		
-			<li><a href="/tags/iOS/" title="iOS">iOS<sup>1</sup></a></li>
+			<li><a href="/tags/iOS/" title="iOS">iOS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/动画/" title="动画">动画<sup>1</sup></a></li>
 		
 			<li><a href="/tags/小记/" title="小记">小记<sup>1</sup></a></li>
 		
