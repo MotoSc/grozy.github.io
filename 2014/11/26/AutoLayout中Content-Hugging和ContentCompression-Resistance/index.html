@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>学而时习</title>
+    <title>AutoLayout中Content Hugging和Content Compression Resistance | 学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="title: AutoLayout中Content Hugging和Content Compression Resistancedate: 2014-11-26 13:53:31
-tags: [AutoLayout][Content Hugging][Content Compression Resi">
+    <meta name="description" content="Content Hugging 和 Content Compression Resistance
+这两个属性对有intrinsic Content size 的控件（如UIButton，UILabel）非常重要。通俗的讲，具有intrinsic content size的控件自己知道（可以计算）自己">
     
     
     
@@ -74,15 +74,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" title="" itemprop="url"></a>
+      <a href="/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" title="AutoLayout中Content Hugging和Content Compression Resistance" itemprop="url">AutoLayout中Content Hugging和Content Compression Resistance</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-26T06:22:18.000Z" itemprop="datePublished">11月 26 2014</time>
-    更新日期:<time datetime="2014-11-26T06:22:18.000Z" itemprop="dateModified">11月 26 2014</time>
+    <time datetime="2014-11-26T05:53:31.000Z" itemprop="datePublished">11月 26 2014</time>
+    更新日期:<time datetime="2014-11-26T06:23:36.000Z" itemprop="dateModified">11月 26 2014</time>
     
   </p>
 </header>
@@ -91,12 +91,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]"><span class="toc-number">1.</span> <span class="toc-text">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">2.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">1.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
 		</div>
 		
-		<p>title: AutoLayout中Content Hugging和Content Compression Resistance<br>date: 2014-11-26 13:53:31</p>
-<h2 id="tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</h2>
-<h2 id="Content_Hugging_和_Content_Compression_Resistance">Content Hugging 和 Content Compression Resistance</h2>
+		<h2 id="Content_Hugging_和_Content_Compression_Resistance">Content Hugging 和 Content Compression Resistance</h2>
 <p>这两个属性对有intrinsic Content size 的控件（如UIButton，UILabel）非常重要。通俗的讲，具有intrinsic content size的控件自己知道（可以计算）自己的大小，例如一个label，当你设置text，font之后，其大小是可以计算到的。关于intrinsic content size官方的解释：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Custom views typically have content that they display of which the layout system is unaware. Overriding this method allows a custom view to communicate to the layout system what size it would like to be based on its content. This intrinsic size must be independent of the content frame, because there’s no way to dynamically communicate a changed width to the layout system based on a changed height, <span class="keyword">for</span> example.</div></pre></td></tr></table></figure>
 
@@ -116,12 +114,17 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AutoLayout/">AutoLayout</a><a href="/tags/Content-Hugging/">Content Hugging</a><a href="/tags/Content-Compression-Resistance/">Content Compression Resistance</a>
+  </div>
+
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" data-title="学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" data-title="AutoLayout中Content Hugging和Content Compression Resistance | 学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -147,7 +150,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]"><span class="toc-number">1.</span> <span class="toc-text">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">2.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">1.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -161,7 +164,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/AutoLayout/" title="AutoLayout">AutoLayout<sup>1</sup></a></li>
+			<li><a href="/tags/AutoLayout/" title="AutoLayout">AutoLayout<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Content-Compression-Resistance/" title="Content Compression Resistance">Content Compression Resistance<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Content-Hugging/" title="Content Hugging">Content Hugging<sup>1</sup></a></li>
 		
 			<li><a href="/tags/SKLabelNode/" title="SKLabelNode">SKLabelNode<sup>1</sup></a></li>
 		
