@@ -36,3 +36,44 @@ view.width <= optimal size
 Content Compression Resistance就是要维持当前view在他的optimal size（intrinsic content size），可以想象成给view添加了一个额外的width constraint，此constraint试图保持view的size不让其变小：
 view.width >= optimal size
 此默认优先级为750.
+``` bash
+    button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];  
+    button1.translatesAutoresizingMaskIntoConstraints = NO;  
+    [button1 setTitle:@"button 1 button 2" forState:UIControlStateNormal];  
+    [button1 sizeToFit];  
+
+    [self.view addSubview:button1];  
+
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:100.0f];  
+    [self.view addConstraint:constraint];  
+
+    constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:100.0f];  
+    [self.view addConstraint:constraint];  
+
+    constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-150.0f];  
+    constraint.priority = 751.0f;  
+    [self.view addConstraint:constraint];  
+```
+创建一个按钮，设置其constraint，使其距离顶部100，距离左边100，距离右边150，注意右边constraint的优先级设置为751.0（priority的默认值为UILayoutPriorityRequired = 1_000），此时AutoLayout系统会先去首先满足constraint，然后再去满足Content compression resistance(UILayoutPriorityDefaultHigh = 750)。
+当将751改变为749(priority < UILayoutPriorityDefaultHigh)时，AutoLayout优先满足Content compression resistance，而之后对constraint做处理。也就是说内容最小压缩到完全呈现内容的大小，上限受constraint控制。
+（图片）
+这就是先满足了Content compression resistance 的constraint，因为其优先级高
+下面举例Content Hugging，例码如下：
+``` bash
+    button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];  
+    button1.translatesAutoresizingMaskIntoConstraints = NO;  
+    [button1 setTitle:@"button 1 button 2" forState:UIControlStateNormal];  
+    [button1 sizeToFit];  
+
+    [self.view addSubview:button1];  
+
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:100.0f];  
+    [self.view addConstraint:constraint];  
+
+    constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:100.0f];  
+    [self.view addConstraint:constraint];  
+
+    constraint = [NSLayoutConstraint constraintWithItem:button1 attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-10.0f];  
+    constraint.priority = 251.0f;  
+    [self.view addConstraint:constraint];  
+```
