@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>UIImagePickerController在dismss后状态栏消失 | 学而时习</title>
+    <title>学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="在做iOS上传头像的时候，自定义了图像的裁剪的ViewController。按照需求，要求和系统的一样，从相机或者相册直接push到编辑图像的界面。但是当我直接push图像裁剪的ViewController中之后在进行dismiss，结果状态栏消失不见了。在网上找到了一个能显示状态栏的方法,先隐藏状">
+    <meta name="description" content="title: AutoLayout和UITableViewCell的动态高度date: 2014-11-21 16:16:24
+tags:[UITableView,AutoLayout]
+今天学习AutoLayout的时候6380 6450">
     
     
     
@@ -73,15 +75,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/20/UIImagePickerController在dismss后状态栏消失/" title="UIImagePickerController在dismss后状态栏消失" itemprop="url">UIImagePickerController在dismss后状态栏消失</a>
+      <a href="/2014/11/23/AutoLayout和UITableViewCell的动态高度/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-20T05:50:41.000Z" itemprop="datePublished">11月 20 2014</time>
-    更新日期:<time datetime="2014-11-21T02:34:40.000Z" itemprop="dateModified">11月 21 2014</time>
+    <time datetime="2014-11-23T02:55:13.000Z" itemprop="datePublished">11月 23 2014</time>
+    更新日期:<time datetime="2014-11-23T02:55:13.000Z" itemprop="dateModified">11月 23 2014</time>
     
   </p>
 </header>
@@ -90,27 +92,22 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:[UITableView,AutoLayout]"><span class="toc-number">1.</span> <span class="toc-text">tags:[UITableView,AutoLayout]</span></a></li></ol>
 		</div>
 		
-		<p>在做iOS上传头像的时候，自定义了图像的裁剪的ViewController。按照需求，要求和系统的一样，从相机或者相册直接push到编辑图像的界面。但是当我直接push图像裁剪的ViewController中之后在进行dismiss，结果状态栏消失不见了。在网上找到了一个能显示状态栏的方法,先隐藏状态栏之后在显示。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//处理调用UIImagePickerViewController push到自定义裁剪的ViewController中后，statusBar消失</div><div class="line">- (void)showStatusBar</div><div class="line">{</div><div class="line">    [UIView animateWithDuration:<span class="number">0.4</span> animations:^{</div><div class="line"></div><div class="line">        [[UIApplication sharedApplication] <span class="keyword">set</span>StatusBarHidden:YES];</div><div class="line">    </div><div class="line">    } completion:^(BOOL finished) {</div><div class="line"></div><div class="line">        [[UIApplication sharedApplication] <span class="keyword">set</span>StatusBarHidden:NO];</div><div class="line"></div><div class="line">    }];</div><div class="line">}</div></pre></td></tr></table></figure>
-
+		<p>title: AutoLayout和UITableViewCell的动态高度<br>date: 2014-11-21 16:16:24</p>
+<h2 id="tags:[UITableView,AutoLayout]">tags:[UITableView,AutoLayout]</h2>
+<p>今天学习<a href="">AutoLayout</a>的时候<br>6380 6450</p>
   
 	</div>
 		<footer class="article-footer clearfix">
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iOS/">iOS</a><a href="/tags/UIImagePickerController/">UIImagePickerController</a>
-  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/20/UIImagePickerController在dismss后状态栏消失/" data-title="UIImagePickerController在dismss后状态栏消失 | 学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/23/AutoLayout和UITableViewCell的动态高度/" data-title="学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -120,18 +117,18 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/11/23/AutoLayout和UITableViewCell的动态高度/" title="">
+ <a href="/2014/11/26/AutoLayout-VFL/" title="AutoLayout &amp; VFL">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  (no title)</span>
+  AutoLayout &amp; VFL</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2014/11/19/iOS动画-1/"  title="iOS动画-1">
+<a href="/2014/11/20/UIImagePickerController在dismss后状态栏消失/"  title="UIImagePickerController在dismss后状态栏消失">
  <strong>NEXT:</strong><br/> 
- <span>iOS动画-1
+ <span>UIImagePickerController在dismss后状态栏消失
 </span>
 </a>
 </div>
@@ -144,7 +141,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:[UITableView,AutoLayout]"><span class="toc-number">1.</span> <span class="toc-text">tags:[UITableView,AutoLayout]</span></a></li></ol>
   </div>
 
 <div id="asidepart">
