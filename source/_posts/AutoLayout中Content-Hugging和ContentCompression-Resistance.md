@@ -1,6 +1,6 @@
 title: AutoLayout中Content Hugging和Content Compression Resistance
 date: 2014-11-26 13:53:31
-tags: [AutoLayout][Content Hugging][Content Compression Resistance]
+tags: [AutoLayout,Content Hugging,Content Compression Resistance]
 ---
 ##Content Hugging 和 Content Compression Resistance
 这两个属性对有intrinsic Content size 的控件（如UIButton，UILabel）非常重要。通俗的讲，具有intrinsic content size的控件自己知道（可以计算）自己的大小，例如一个label，当你设置text，font之后，其大小是可以计算到的。关于intrinsic content size官方的解释：
