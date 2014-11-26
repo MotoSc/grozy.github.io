@@ -1,0 +1,334 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>学而时习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="孙国志">
+    
+    <meta name="description" content="title: AutoLayout中Content Hugging和Content Compression Resistancedate: 2014-11-26 13:53:31
+tags: [AutoLayout][Content Hugging][Content Compression Resi">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+    
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9dd92a73fa7072706af88b2049ab1b79' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="学而时习" title="学而时习"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="学而时习">学而时习</a></h1>
+				<h2 class="blog-motto">iOS程序猿，就职北京</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="孙国志">孙国志</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-26T06:19:31.000Z" itemprop="datePublished">11月 26 2014</time>
+    更新日期:<time datetime="2014-11-26T06:19:31.000Z" itemprop="dateModified">11月 26 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]"><span class="toc-number">1.</span> <span class="toc-text">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">2.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
+		</div>
+		
+		<p>title: AutoLayout中Content Hugging和Content Compression Resistance<br>date: 2014-11-26 13:53:31</p>
+<h2 id="tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</h2>
+<h2 id="Content_Hugging_和_Content_Compression_Resistance">Content Hugging 和 Content Compression Resistance</h2>
+<p>这两个属性对有intrinsic Content size 的控件（如UIButton，UILabel）非常重要。通俗的讲，具有intrinsic content size的控件自己知道（可以计算）自己的大小，例如一个label，当你设置text，font之后，其大小是可以计算到的。关于intrinsic content size官方的解释：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Custom views typically have content that they display of which the layout system is unaware. Overriding this method allows a custom view to communicate to the layout system what size it would like to be based on its content. This intrinsic size must be independent of the content frame, because there’s no way to dynamically communicate a changed width to the layout system based on a changed height, <span class="keyword">for</span> example.</div></pre></td></tr></table></figure>
+
+<p>好了，了解了intrinsic content size的概念之后，下面就重点讨论Content Hugging 和 Content Compression Resistance了。<br>UIView中关于Content Hugging 和 Content Compression Resistance的方法有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (UILayoutPriority)contentCompressionResistancePriorityForAxis:(UILayoutConstraintAxis)axis</div><div class="line">- (void)<span class="keyword">set</span>ContentCompressionResistancePriority:(UILayoutPriority)priority <span class="keyword">for</span>Axis:(UILayoutConstraintAxis)axis</div><div class="line">- (UILayoutPriority)contentHuggingPriorityForAxis:(UILayoutConstraintAxis)axis</div><div class="line">- (void)<span class="keyword">set</span>ContentHuggingPriority:(UILayoutPriority)priority <span class="keyword">for</span>Axis:(UILayoutConstraintAxis)axis</div></pre></td></tr></table></figure>
+
+<p>优先级常量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typedef float UILayoutPriority;</div><div class="line">static const UILayoutPriority UILayoutPriorityRequired NS_AVAILABLE_IOS(<span class="number">6</span>_0) = <span class="number">1000</span>; // A required constraint.  Do not exceed this.</div><div class="line">static const UILayoutPriority UILayoutPriorityDefaultHigh NS_AVAILABLE_IOS(<span class="number">6</span>_0) = <span class="number">750</span>; // This is the priority level with which a button resists compressing its content.</div><div class="line">static const UILayoutPriority UILayoutPriorityDefaultLow NS_AVAILABLE_IOS(<span class="number">6</span>_0) = <span class="number">250</span>; // This is the priority level at which a button hugs its contents horizontally.</div><div class="line">static const UILayoutPriority UILayoutPriorityFittingSizeLevel NS_AVAILABLE_IOS(<span class="number">6</span>_0) = <span class="number">50</span>; // When you send -[UIView systemLayoutSizeFittingSize:], the size fitting most closely to the target size (the argument) is computed.  UILayoutPriorityFittingSizeLevel is the priority level with which the view wants to conform to the target size <span class="keyword">in</span> that computation.  It<span class="string">'s quite low.  It is generally not appropriate to make a constraint at exactly this priority.  You want to be higher or lower.</span></div></pre></td></tr></table></figure>
+
+<p>Hugging priority 确定view有多大的优先级阻止自己变大。</p>
+<p>Compression Resistance priority确定有多大的优先级阻止自己变小。</p>
+<p>很抽象，其实content Hugging就是要维持当前view在它的optimal size（intrinsic content size），可以想象成给view添加了一个额外的width constraint，此constraint试图保持view的size不让其变大：</p>
+<p>view.width &lt;= optimal size</p>
+<p>此constraint的优先级就是通过上面的方法得到和设置的，content Hugging默认为250.</p>
+<p>Content Compression Resistance就是要维持当前view在他的optimal size（intrinsic content size），可以想象成给view添加了一个额外的width constraint，此constraint试图保持view的size不让其变小：<br>view.width &gt;= optimal size<br>此默认优先级为750.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/11/26/AutoLayout中Content-Hugging和ContentCompression-Resistance/" data-title="学而时习" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/11/26/AutoLayout-VFL/"  title="AutoLayout &amp; VFL">
+ <strong>NEXT:</strong><br/> 
+ <span>AutoLayout &amp; VFL
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags:_[AutoLayout][Content_Hugging][Content_Compression_Resistance]"><span class="toc-number">1.</span> <span class="toc-text">tags: [AutoLayout][Content Hugging][Content Compression Resistance]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content_Hugging_和_Content_Compression_Resistance"><span class="toc-number">2.</span> <span class="toc-text">Content Hugging 和 Content Compression Resistance</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/AutoLayout/" title="AutoLayout">AutoLayout<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SKLabelNode/" title="SKLabelNode">SKLabelNode<sup>1</sup></a></li>
+		
+			<li><a href="/tags/SpriteKit/" title="SpriteKit">SpriteKit<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Swift/" title="Swift">Swift<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UIImagePickerController/" title="UIImagePickerController">UIImagePickerController<sup>1</sup></a></li>
+		
+			<li><a href="/tags/VFL/" title="VFL">VFL<sup>1</sup></a></li>
+		
+			<li><a href="/tags/iOS/" title="iOS">iOS<sup>2</sup></a></li>
+		
+			<li><a href="/tags/动画/" title="动画">动画<sup>1</sup></a></li>
+		
+			<li><a href="/tags/小记/" title="小记">小记<sup>1</sup></a></li>
+		
+			<li><a href="/tags/摘记/" title="摘记">摘记<sup>1</sup></a></li>
+		
+			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yoursite.com" target="_blank" title="孙国志">孙国志</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
