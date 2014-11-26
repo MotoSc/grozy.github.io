@@ -76,3 +76,54 @@ metrics定义了一些vfl中要用的参数。
 根据需要也可以添加按位或NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight。（鬼知道什么需要，自己看经验吧）
 
 5)写好以后一般把constraint添加给superview：
+``` bash
+    NSString *vfl1 = @"|-hPadding-[_headerL]-hPadding-|";  
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:dict1]]; 
+```
+6)还有一个api用于生成单个constaint：
+``` bash
+    +(id)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1 relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:(CGFloat)c;  
+```
+对于参数，记得，view1.attr1 = view2.attr2 * multiplier + constant就好。
+这个是不用VFL的，好理解，但是不方便。如果用这个写。工作两不会比传统布局少多少。
+
+##五，实际操作中的问题
+
+上面都是理论，世界操作会有些奇怪的问题要注意。这节才是重点。
+
+xib模式，没啥要注意的，xib里报warning就报吧，我也不知道怎么弄，一切正常就好。
+
+编码模式中，
+
+1.addConstraint(s)前，view应该去部被addSubView上去了。
+
+2.不必给views写frame
+
+3.给必要的view关掉AutoresizeingMask。[_aView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+4.UILabel换行要写linebreakMode,要写numberOfLines(iOS7.0默认好像是1，坑爹了)
+
+5.UILabel要想换行，一定要添加preferredMaxLayoutWidth。否则没法初始化宽度。
+
+
+编码模式感受到的最大方便。label换行不用写行高计算了。完全自动适应。label所在的superview也会自动计算rect。这才是al的精华。
+
+所以，可以不用写这些了：
+``` bash
+if([[UIDevice currentDevice].systemVersion floatValue]<7.0){ 
+    CGSize titleS = [title sizeWithFont:[_headerL font] 
+    constrainedToSize:CGSizeMake(270.0, CGFLOAT_MAX) 
+    lineBreakMode:NSLineBreakByWordWrapping]; 
+
+    _headerL.frame = CGRectMake(_headerL.frame.origin.x, _headerL.frame.origin.y, 
+    _headerL.frame.size.width, titleS.height); 
+}else{ 
+    CGRect titleR = [title boundingRectWithSize:CGSizeMake(270.0, CGFLOAT_MAX) 
+    options:NSStringDrawingUsesLineFragmentOrigin 
+    attributes:nil 
+    context:nil]; 
+    headerL.frame = CGRectMake(_headerL.frame.origin.x, _headerL.frame.origin.y, 
+    _headerL.frame.size.width, titleR.size.height); 
+} 
+```
+[demo](http://www.cocoachina.com/bbs/job.php?action=download&aid=59838)
