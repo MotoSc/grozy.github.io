@@ -9,9 +9,9 @@
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="自iOS6之后的版本都可以使用AutoLayout
+    <meta name="description" content="自iOS6之后的版本都可以使用AutoLayout大部分内容转自
 AutoLayout的使用场景
-1、苹果机型逐步增多，为了适配更多的机型，应用应该使用AL。2、根据应用内容决定。如果内容的信息众多，同时需要展示的类别也很多，尺寸动态不固定。3、Mac os中窗口大小的变化。4、支持横屏旋转的iPad应用。（iP">
+1、苹果机型逐步增多，为了适配更多的机型，应用应该使用AL。2、根据应用内容决定。如果内容的信息众多，同时需要展示的类别也很多，尺寸动态不固定。3、Mac os中窗口大小的变化。4、支持横屏旋转的iPa">
     
     
     
@@ -83,7 +83,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     </p>
   <p class="article-time">
     <time datetime="2014-11-26T03:10:36.000Z" itemprop="datePublished">11月 26 2014</time>
-    更新日期:<time datetime="2014-11-26T04:19:55.000Z" itemprop="dateModified">11月 26 2014</time>
+    更新日期:<time datetime="2014-11-26T05:24:14.000Z" itemprop="dateModified">11月 26 2014</time>
     
   </p>
 </header>
@@ -92,10 +92,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的使用场景"><span class="toc-number">1.</span> <span class="toc-text">AutoLayout的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的基础理论"><span class="toc-number">2.</span> <span class="toc-text">AutoLayout的基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AL的核心出发点"><span class="toc-number">2.1.</span> <span class="toc-text">AL的核心出发点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xib和SB下的AutoLayout"><span class="toc-number">3.</span> <span class="toc-text">xib和SB下的AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码方式使用AutoLayout"><span class="toc-number">4.</span> <span class="toc-text">编码方式使用AutoLayout</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL"><span class="toc-number">4.1.</span> <span class="toc-text">VFL</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的使用场景"><span class="toc-number">1.</span> <span class="toc-text">AutoLayout的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的基础理论"><span class="toc-number">2.</span> <span class="toc-text">AutoLayout的基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AL的核心出发点"><span class="toc-number">2.1.</span> <span class="toc-text">AL的核心出发点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xib和SB下的AutoLayout"><span class="toc-number">3.</span> <span class="toc-text">xib和SB下的AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码方式使用AutoLayout"><span class="toc-number">4.</span> <span class="toc-text">编码方式使用AutoLayout</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL"><span class="toc-number">4.1.</span> <span class="toc-text">VFL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL例子"><span class="toc-number">4.2.</span> <span class="toc-text">VFL例子</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>自iOS6之后的版本都可以使用AutoLayout</p>
+		<p>自iOS6之后的版本都可以使用AutoLayout<a href="http://blog.csdn.net/mozixiong/article/details/14165391" target="_blank" rel="external">大部分内容转自</a></p>
 <h2 id="AutoLayout的使用场景">AutoLayout的使用场景</h2>
 <p>1、苹果机型逐步增多，为了适配更多的机型，应用应该使用AL。<br>2、根据应用内容决定。如果内容的信息众多，同时需要展示的类别也很多，尺寸动态不固定。<br>3、Mac os中窗口大小的变化。<br>4、支持横屏旋转的iPad应用。（iPhone支持横屏的应该很少吧）<br>5、业务不负责，页面较少的应用</p>
 <h2 id="AutoLayout的基础理论">AutoLayout的基础理论</h2>
@@ -108,9 +108,34 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <p>VFL在程序中可以通过</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (NSArray *)constraintsWithVisualFormat:(NSString *)format options:(NSLayoutFormatOptions)opts metrics:(NSDictionary *)metrics views:(NSDictionary *)views;</div></pre></td></tr></table></figure>
 
+<p>-它返回一组constraint<br>-format是你的VFL字符串<br>-opts:NSLayoutFormatOptions 用于校准两个成员对象之间的关系和方向<br>-metrics:可以自定义变量，在编译器解析时，自动替换为metrics字典中的value。<br>-views:需要constraint关系的所有view，也可以是一个（子view和父view）</p>
+<h3 id="VFL例子">VFL例子</h3>
+<p>写VFL字串的时候，应想象出合理的画面，来保证VFL的合理性，不合理的constraint会直接导致崩溃。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSDictionary *dict1 = NSDictionaryOfVariableBindings(_boxV,_headerL,_imageV,_backBtn,_<span class="keyword">done</span>Btn);  </div><div class="line">NSDictionary *metrics = @{@<span class="string">"hPadding"</span>:@<span class="number">5</span>,@<span class="string">"vPadding"</span>:@<span class="number">5</span>,@<span class="string">"imageEdge"</span>:@<span class="number">150.0</span>};  </div><div class="line">NSString *vfl = @<span class="string">"|-hPadding-[_boxV]-hPadding-|"</span>;  </div><div class="line">NSString *vfl0 = @<span class="string">"V:|-25-[_boxV]"</span>;  </div><div class="line">NSString *vfl3 = @<span class="string">"V:|-vPadding-[_headerL]-vPadding-[_imageV(imageEdge)]-vPadding-[_backBtn]-vPadding-|"</span>;</div></pre></td></tr></table></figure>
+
+<p>dict1就是api 中需要的最后一个参数views。由上述宏来完成。</p>
+<p>metrics定义了一些vfl中要用的参数。</p>
+<p>下面有些vfl字串，一看便知如何使用metrics。</p>
+<p>看到：</p>
+<p>1)”|”表示superview. </p>
+<p>|-间距-[view1对象名]-(&gt;=20)-[view2对象名]</p>
+<p>不写H/V就表示横向，间距可以写固定值也可写&gt;/&lt;。</p>
+<p>形象化的理解，”|”是用来确定view上、下、左、右关系的。</p>
+<p>想要确定从上到下的关系，就加V:|。那么这个vfl字串就可以描述从上到下的view们的关系。</p>
+<p>2)看到vfl3里面，方括号表示view，圆括号表示尺寸数值。支持大小等于。或者另一个view　|-[view1(view2)]，v１的宽度等于v２。</p>
+<p>3)优先级用＠表示。如V:|-50@750-[view(55)]，或者写到metrics里面更好。</p>
+<p>具体定义查看UILayoutPriority。有几个固定的数值。1000表示必须支持。</p>
+<p>4)options，这个要看具体需要。如果是竖排V布局，可以添加NSLayoutFormatAlignAllLeft，让他们对齐。</p>
+<p>根据需要也可以添加按位或NSLayoutFormatAlignAllLeft | NSLayoutFormatAlignAllRight。（鬼知道什么需要，自己看经验吧）</p>
+<p>5)写好以后一般把constraint添加给superview：</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/AutoLayout/">AutoLayout</a><a href="/tags/VFL/">VFL</a>
+  </div>
 
 
 
@@ -143,7 +168,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的使用场景"><span class="toc-number">1.</span> <span class="toc-text">AutoLayout的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的基础理论"><span class="toc-number">2.</span> <span class="toc-text">AutoLayout的基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AL的核心出发点"><span class="toc-number">2.1.</span> <span class="toc-text">AL的核心出发点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xib和SB下的AutoLayout"><span class="toc-number">3.</span> <span class="toc-text">xib和SB下的AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码方式使用AutoLayout"><span class="toc-number">4.</span> <span class="toc-text">编码方式使用AutoLayout</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL"><span class="toc-number">4.1.</span> <span class="toc-text">VFL</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的使用场景"><span class="toc-number">1.</span> <span class="toc-text">AutoLayout的使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AutoLayout的基础理论"><span class="toc-number">2.</span> <span class="toc-text">AutoLayout的基础理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AL的核心出发点"><span class="toc-number">2.1.</span> <span class="toc-text">AL的核心出发点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xib和SB下的AutoLayout"><span class="toc-number">3.</span> <span class="toc-text">xib和SB下的AutoLayout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码方式使用AutoLayout"><span class="toc-number">4.</span> <span class="toc-text">编码方式使用AutoLayout</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL"><span class="toc-number">4.1.</span> <span class="toc-text">VFL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VFL例子"><span class="toc-number">4.2.</span> <span class="toc-text">VFL例子</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -157,6 +182,8 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
+			<li><a href="/tags/AutoLayout/" title="AutoLayout">AutoLayout<sup>1</sup></a></li>
+		
 			<li><a href="/tags/SKLabelNode/" title="SKLabelNode">SKLabelNode<sup>1</sup></a></li>
 		
 			<li><a href="/tags/SpriteKit/" title="SpriteKit">SpriteKit<sup>2</sup></a></li>
@@ -164,6 +191,8 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 			<li><a href="/tags/Swift/" title="Swift">Swift<sup>1</sup></a></li>
 		
 			<li><a href="/tags/UIImagePickerController/" title="UIImagePickerController">UIImagePickerController<sup>1</sup></a></li>
+		
+			<li><a href="/tags/VFL/" title="VFL">VFL<sup>1</sup></a></li>
 		
 			<li><a href="/tags/iOS/" title="iOS">iOS<sup>2</sup></a></li>
 		
