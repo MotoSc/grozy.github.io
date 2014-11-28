@@ -77,3 +77,4 @@ view.width >= optimal size
     constraint.priority = 251.0f;  
     [self.view addConstraint:constraint];  
 ```
+运行之后再将priority设置为249优先满足constraint。
