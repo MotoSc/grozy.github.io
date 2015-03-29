@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>摘记-如何使Swift方法返回值为空 | 学而时习</title>
+    <title>自动布局摘记 | 学而时习</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="孙国志">
     
-    <meta name="description" content="今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值。还没等着编译就给我抛出了个warn。我这时候想起，之前遇到过的这个问题了，关于之前区分?和!的区别。
-12var num :Int = nil //抛出的错误和我今天遇到的一样。var num :Int? =">
+    <meta name="description" content="内容驱动的布局
+Auto Layout是内容驱动的。内容驱动布局包括:
+压缩阻力(Content Compression Resistance)
+压缩阻力，Auto Layout规则中不允许内容被压缩，导致内容不会被截断。布局会优先满足内容，其次会满足布局约束。
+内容吸附(Content Huggi">
     
     
     
@@ -74,15 +77,15 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/15/摘记-如何使Swift方法返回值为空/" title="摘记-如何使Swift方法返回值为空" itemprop="url">摘记-如何使Swift方法返回值为空</a>
+      <a href="/2015/03/29/自动布局摘记/" title="自动布局摘记" itemprop="url">自动布局摘记</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="孙国志">孙国志</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-11-15T12:32:35.000Z" itemprop="datePublished">11月 15 2014</time>
-    更新日期:<time datetime="2014-11-15T13:26:42.000Z" itemprop="dateModified">11月 15 2014</time>
+    <time datetime="2015-03-29T08:33:37.000Z" itemprop="datePublished">3月 29 2015</time>
+    更新日期:<time datetime="2015-03-29T09:16:24.000Z" itemprop="dateModified">3月 29 2015</time>
     
   </p>
 </header>
@@ -91,26 +94,30 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS中:"><span class="toc-number">1.</span> <span class="toc-text">iOS中:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift中:"><span class="toc-number">2.</span> <span class="toc-text">Swift中:</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内容驱动的布局"><span class="toc-number">1.</span> <span class="toc-text">内容驱动的布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩阻力(Content_Compression_Resistance)"><span class="toc-number">1.1.</span> <span class="toc-text">压缩阻力(Content Compression Resistance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容吸附(Content_Hugging)"><span class="toc-number">1.2.</span> <span class="toc-text">内容吸附(Content Hugging)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约束优先级"><span class="toc-number">2.</span> <span class="toc-text">约束优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约束"><span class="toc-number">3.</span> <span class="toc-text">约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可满足性"><span class="toc-number">3.1.</span> <span class="toc-text">可满足性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#充分性"><span class="toc-number">3.2.</span> <span class="toc-text">充分性</span></a></li></ol></li></ol>
 		</div>
 		
-		<p>今天在写基类的时候，打算子类实现对象，但是发现不能像在iOS中在父类方法中直接返回一个空值。<br><img src="/img/摘记-如何使Swift方法返回值为空/warn.png" alt="警告"><br>还没等着编译就给我抛出了个warn。我这时候想起，之前遇到过的这个问题了，关于之前区分?和!的区别。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var num :Int = nil //抛出的错误和我今天遇到的一样。</div><div class="line">var num :Int? = nil //当加上？之后问题就解决了。</div></pre></td></tr></table></figure>
-
-<p>撇个<a href="http://blog.csdn.net/zhangao0086/article/details/38640209" target="_blank" rel="external">Optional</a>有关的传送门。大概就是这么个意思，声明一个对象的时候，Swift不会像obj-C和其他语言一样为你默认的设置一个为nil的初始值。在Swift中，没有初始值的变量是不可以使用的，所以出现了Optional类型。在下面的类方法的返回值后面，加一个问号就可以让返回类型支持NilLiteralConvertible这个协议。</p>
-<h2 id="iOS中:">iOS中:</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ (SKTexture *)generateTexture</div><div class="line">{</div><div class="line">  // Overridden by subclasses</div><div class="line">  <span class="keyword">return</span> nil;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h2 id="Swift中:">Swift中:</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func generateTexture() -&gt; SKTexture</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> nil</div><div class="line">}</div><div class="line">//解决办法</div><div class="line">func generateTexture() -&gt; SKTexture?</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> nil</div><div class="line">}</div></pre></td></tr></table></figure>
-
+		<h2 id="内容驱动的布局">内容驱动的布局</h2>
+<p>Auto Layout是内容驱动的。内容驱动布局包括:</p>
+<h3 id="压缩阻力(Content_Compression_Resistance)">压缩阻力(Content Compression Resistance)</h3>
+<p>压缩阻力，Auto Layout规则中不允许内容被压缩，导致内容不会被截断。布局会优先满足内容，其次会满足布局约束。</p>
+<h3 id="内容吸附(Content_Hugging)">内容吸附(Content Hugging)</h3>
+<p>内容吸附，它使用视图拒绝补白和伸展，保持每个视图的框架接近它所呈现内容的自然大小。</p>
+<h2 id="约束优先级">约束优先级</h2>
+<p>Auto Layout通过优先级规则权衡个布局选项的重要性，并对优先级做适当的调整，使其能适合有挑战的边界条件和特殊情况。当规则发生冲突时，系统根据优先级排序选择最重要的布局质量来保护。</p>
+<h2 id="约束">约束</h2>
+<p>约束是指用来描述视图布局的规则。约束限制了事物彼此关联的方式，并指出如何对它们进行布局。</p>
+<h3 id="可满足性">可满足性</h3>
+<p>建立的规则必须在单独使用和作为整体使用时都有意义。</p>
+<h3 id="充分性">充分性</h3>
+<p>面对多种可能的布局解决方案时，欠约束的界面（不充分或有歧义的界面）会产生随机结果。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/摘记/">摘记</a><a href="/tags/Swift/">Swift</a>
+  <span></span> <a href="/tags/AutoLayout/">AutoLayout</a>
   </div>
 
 
@@ -118,7 +125,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/15/摘记-如何使Swift方法返回值为空/" data-title="摘记-如何使Swift方法返回值为空 | 学而时习" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/03/29/自动布局摘记/" data-title="自动布局摘记 | 学而时习" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -127,19 +134,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/11/19/iOS动画-1/" title="iOS动画-1">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  iOS动画-1</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/11/15/SKLabelNode/"  title="SKLabelNode">
+<a href="/2015/03/29/AutoLayout和UITableViewCell的动态高度/"  title="">
  <strong>NEXT:</strong><br/> 
- <span>SKLabelNode
+ <span>(no title)
 </span>
 </a>
 </div>
@@ -152,7 +151,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS中:"><span class="toc-number">1.</span> <span class="toc-text">iOS中:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swift中:"><span class="toc-number">2.</span> <span class="toc-text">Swift中:</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内容驱动的布局"><span class="toc-number">1.</span> <span class="toc-text">内容驱动的布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩阻力(Content_Compression_Resistance)"><span class="toc-number">1.1.</span> <span class="toc-text">压缩阻力(Content Compression Resistance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容吸附(Content_Hugging)"><span class="toc-number">1.2.</span> <span class="toc-text">内容吸附(Content Hugging)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约束优先级"><span class="toc-number">2.</span> <span class="toc-text">约束优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#约束"><span class="toc-number">3.</span> <span class="toc-text">约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可满足性"><span class="toc-number">3.1.</span> <span class="toc-text">可满足性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#充分性"><span class="toc-number">3.2.</span> <span class="toc-text">充分性</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
